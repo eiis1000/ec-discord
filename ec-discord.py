@@ -38,7 +38,7 @@ flags = {}
 maintainer = 452902745066831903 # erez
 start_time = time.ctime() 
 
-intents = discord.Intents.default() | discord.Intents._from_value(8)
+intents = discord.Intents.default()
 intents.guilds = True
 intents.message_content = True
 
