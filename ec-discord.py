@@ -38,9 +38,7 @@ flags = {}
 maintainer = 452902745066831903 # erez
 start_time = time.ctime() 
 
-intents = discord.Intents.all() # | 8
-#intents.guilds = True
-#intents.message_content = True
+intents = discord.Intents._from_value(3276541)
 
 # client = discord.Client(intents=intents)
 bot = commands.Bot(command_prefix='!', intents=intents)
