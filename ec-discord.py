@@ -1,20 +1,21 @@
 # bot.py
 import asyncio
-import base64
 import binascii
-import os
 import re
 import sys
 import time
-import traceback
-
 import discord
-from Crypto.Cipher import PKCS1_OAEP
-from Crypto.Hash import SHA1
-from Crypto.Protocol.SecretSharing import Shamir
-from Crypto.PublicKey import RSA
-from Crypto.Util import Padding
 from discord.ext import commands
+from Crypto.Hash import SHA1
+
+# import base64
+# import os
+# import traceback
+
+# from Crypto.Cipher import PKCS1_OAEP
+# from Crypto.Protocol.SecretSharing import Shamir
+# from Crypto.PublicKey import RSA
+# from Crypto.Util import Padding
 
 # from dotenv import load_dotenv
 
