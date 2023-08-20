@@ -100,7 +100,7 @@ async def on_message(message):
         if 'my son' in message.content.lower():
             await message.channel.send('yes father')
         if message.content.lower() == 'version' or message.content.lower() == 'pbv':
-            await message.channel.send('0.1.3')
+            await message.channel.send('0.1.4')
         if message.content.lower() == 'kill yourself' or message.content.lower() == 'kys':
             await message.channel.send('okay :(')
             try:
@@ -188,6 +188,10 @@ async def addaffiliate(ctx):
         return
     
     user = mentions[0]
+    if get_role('verified') not in user.roles:
+        await ctx.send(f"{user.mention} hasn't yet verified their MIT email. Ask them to first acquire the `verified` role via `!verify`, then try again.")
+        return
+
     await user.add_roles(get_role('ec-affiliated'))
     await user.add_roles(caller_hall_role)
     await ctx.send(f"Granted ec-affiliated and {caller_hall_role.name[-3:-1]} roles to {user.mention}. \nIf you'd like to undo this or add different/multiple hall roles, contact a moderator.")
@@ -214,6 +218,10 @@ async def addresident(ctx):
         return
     
     user = mentions[0]
+    if get_role('verified') not in user.roles:
+        await ctx.send(f"{user.mention} hasn't yet verified their MIT email. Ask them to first acquire the `verified` role via `!verify`, then try again.")
+        return
+
     await user.add_roles(get_role('ec-affiliated'))
     await user.add_roles(get_role('ec-resident'))
     await user.add_roles(caller_hall_role)
@@ -241,6 +249,9 @@ async def addhallmod(ctx):
         return
 
     user = mentions[0]
+    if get_role('verified') not in user.roles:
+        await ctx.send(f"{user.mention} hasn't yet verified their MIT email. Ask them to first acquire the `verified` role via `!verify`, then try again.")
+        return
     if get_role('ec-resident') not in user.roles:
         await ctx.send(f"Please use !addresident first.")
         return
