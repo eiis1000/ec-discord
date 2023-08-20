@@ -104,7 +104,7 @@ async def on_message(message):
             await message.channel.send('yes father')
         if message.content.lower() == 'version' or message.content.lower() == 'pbv':
             await message.channel.send('0.1.4')
-        if message.content.lower() == 'kill yourself' or message.content.lower() == 'kys':
+        if message.content.lower() == 'reboot' or message.content.lower() == 'kys':
             await message.channel.send('okay :(')
             try:
                 await bot.close()
@@ -155,7 +155,7 @@ async def selfrole(ctx, role_str=None):
         role_str = "'" + role_str
     rq_role = get_role(role_str)
     if rq_role is None:
-        await ctx.send(f"{role_str} is not a valid role. Allowed selfroles are {nicelist(allowed_selfroles)}.")
+        await ctx.send(f"{role_str.replace('@','')} is not a valid role. Allowed selfroles are {nicelist(allowed_selfroles)}.")
         return
     elif role_str not in allowed_selfroles:
         await ctx.send(f"{role_str.replace('@','')} is not an allowed selfrole. Allowed selfroles are {nicelist(allowed_selfroles)}.")
