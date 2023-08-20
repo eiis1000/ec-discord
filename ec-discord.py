@@ -158,7 +158,7 @@ async def selfrole(ctx, role_str=None):
         await ctx.send(f"{role_str} is not a valid role. Allowed selfroles are {nicelist(allowed_selfroles)}.")
         return
     elif role_str not in allowed_selfroles:
-        await ctx.send(f"{role_str} is not an allowed selfrole. Allowed selfroles are {nicelist(allowed_selfroles)}.")
+        await ctx.send(f"{role_str.replace('@','')} is not an allowed selfrole. Allowed selfroles are {nicelist(allowed_selfroles)}.")
         return 
     
     if rq_role in ctx.message.author.roles:
