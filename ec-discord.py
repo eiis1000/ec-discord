@@ -150,6 +150,9 @@ async def selfrole(ctx, role_str=None):
         return
     
     allowed_selfroles = ["'27", "'26", "'25", "'24", "'23", "cruft"]
+    role_str = role_str.replace("‘", "'")
+    if "'" + role_str in allowed_selfroles:
+        role_str = "'" + role_str
     rq_role = get_role(role_str)
     if rq_role is None:
         await ctx.send(f"{role_str} is not a valid role. Allowed selfroles are {nicelist(allowed_selfroles)}.")
