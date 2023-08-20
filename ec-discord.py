@@ -267,7 +267,7 @@ async def addresident(ctx):
         return
     if not (
         set([get_role("hall-chair"), get_role("moderator"), get_role("hall-moderator")])
-        & set(ctx.message.author.roles)
+        and set(ctx.message.author.roles)
     ):
         await ctx.send(
             "Only hall chairs, hall moderators, and server moderators can add new EC"
