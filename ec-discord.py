@@ -117,7 +117,7 @@ async def on_message(message):
 @bot.command(help="Gives a user the verified role.")
 async def manualverify(ctx):
     if ctx.message.channel.id not in ch_id2ch:
-        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of `{nicelist(ch_n2id.keys())}`.")
+        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of {nicelist(ch_n2id.keys())}.")
         return
     if not (set([get_role('hall-chair'), get_role('moderator')]) & set(ctx.message.author.roles)):
         await ctx.send(f"Only hall chairs and moderators can manually verify users.")
@@ -136,7 +136,7 @@ async def manualverify(ctx):
 @bot.command(help="Gives you the specified role.")
 async def selfrole(ctx, role_str=None):
     if ctx.message.channel.id not in ch_id2ch:
-        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of `{nicelist(ch_n2id.keys())}`.")
+        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of {nicelist(ch_n2id.keys())}.")
         return
     if get_role('verified') not in ctx.message.author.roles:
         await ctx.send(f"You haven't yet verified your MIT email. First acquire the `verified` role, then try again.")
@@ -173,7 +173,7 @@ async def addaffiliated(ctx):
 @bot.command(help="Grants ec-affiliated and your hall role.")
 async def addaffiliate(ctx):
     if ctx.message.channel.id not in ch_id2ch:
-        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of `{nicelist(ch_n2id.keys())}`.")
+        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of {nicelist(ch_n2id.keys())}.")
         return
     if get_role('ec-resident') not in ctx.message.author.roles:
         await ctx.send(f"Only EC residents can add new EC affiliates.")
@@ -203,7 +203,7 @@ async def addaffiliate(ctx):
 @bot.command(help="Grants ec-resident and your hall role.")
 async def addresident(ctx):
     if ctx.message.channel.id not in ch_id2ch:
-        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of `{nicelist(ch_n2id.keys())}`.")
+        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of {nicelist(ch_n2id.keys())}.")
         return
     if not (set([get_role('hall-chair'), get_role('moderator'), get_role('hall-moderator')]) & set(ctx.message.author.roles)):
         await ctx.send(f"Only hall chairs, hall moderators, and server moderators can add new EC residents.")
@@ -234,7 +234,7 @@ async def addresident(ctx):
 @bot.command(help="Grants hall-moderator")
 async def addhallmod(ctx):
     if ctx.message.channel.id not in ch_id2ch:
-        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of `{nicelist(ch_n2id.keys())}`.")
+        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of {nicelist(ch_n2id.keys())}.")
         return
     if not (set([get_role('hall-chair'), get_role('moderator')]) & set(ctx.message.author.roles)):
         await ctx.send(f"Only hall chairs and server moderators can add new hall moderators.")
