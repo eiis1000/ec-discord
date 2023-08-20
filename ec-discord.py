@@ -146,7 +146,7 @@ async def selfrole(ctx, role_str=None):
         await ctx.send("Please do not mention your desired role - just enter its name :)")
         return
     
-    allowed_selfroles = ['prefrosh']
+    allowed_selfroles = ["'27", "'26", "'25", "'24", "'23", "cruft"]
     rq_role = get_role(role_str)
     if rq_role is None:
         await ctx.send(f"{role_str} is not a valid role. Allowed selfroles are {allowed_selfroles}.")
