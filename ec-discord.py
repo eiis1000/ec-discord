@@ -149,18 +149,18 @@ async def selfrole(ctx, role_str=None):
     allowed_selfroles = ["'27", "'26", "'25", "'24", "'23", "cruft"]
     rq_role = get_role(role_str)
     if rq_role is None:
-        await ctx.send(f"{role_str} is not a valid role. Allowed selfroles are {allowed_selfroles}.")
+        await ctx.send(f"{role_str} is not a valid role. Allowed selfroles are {", ".join(allowed_selfroles)}.")
         return
     elif role_str not in allowed_selfroles:
-        await ctx.send(f"{role_str} is not an allowed selfrole. Allowed selfroles are {allowed_selfroles}.")
+        await ctx.send(f"{role_str} is not an allowed selfrole. Allowed selfroles are {", ".join(allowed_selfroles)}.")
         return 
     
     if rq_role in ctx.message.author.roles:
         await ctx.message.author.remove_roles(rq_role)
-        await ctx.send(f"Removed {rq_role} from {ctx.message.author.name}.")
+        await ctx.send(f"Removed {rq_role} from {ctx.message.author.mention}.")
     else:
         await ctx.message.author.add_roles(rq_role)
-        await ctx.send(f"Added {rq_role} to {ctx.message.author.name}.")
+        await ctx.send(f"Added {rq_role} to {ctx.message.author.mention}.")
 
 
 @bot.command(hidden=True)
