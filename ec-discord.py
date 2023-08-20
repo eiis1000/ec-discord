@@ -1,4 +1,4 @@
-# bot.py
+n# bot.py
 import os
 
 import discord
@@ -127,7 +127,7 @@ async def manualverify(ctx):
     
     user = mentions[0]
     await user.add_roles(get_role('verified'))
-    await ctx.send(f"Granted verified role to {user.name}. \nIf you'd like to undo this or add different/multiple hall roles, contact a moderator.")
+    await ctx.send(f"Granted verified role to {user.mention}. \nIf you'd like to undo this or add different/multiple hall roles, contact a moderator.")
 
 
 @bot.command(help="Gives you the specified role.")
