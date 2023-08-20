@@ -73,6 +73,9 @@ def get_role(name):
     guild = bot.guilds[0]
     return discord.utils.get(guild.roles, name=name)
 
+def nicelist(l):
+    return ', '.join(l)
+
 
 @bot.event
 async def on_ready():
@@ -114,7 +117,7 @@ async def on_message(message):
 @bot.command(help="Gives a user the verified role.")
 async def manualverify(ctx):
     if ctx.message.channel.id not in ch_id2ch:
-        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of `{list(ch_n2id.keys())}`.")
+        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of `{nicelist(ch_n2id.keys())}`.")
         return
     if not (set([get_role('hall-chair'), get_role('moderator')]) & set(ctx.message.author.roles)):
         await ctx.send(f"Only hall chairs and moderators can manually verify users.")
@@ -133,7 +136,7 @@ async def manualverify(ctx):
 @bot.command(help="Gives you the specified role.")
 async def selfrole(ctx, role_str=None):
     if ctx.message.channel.id not in ch_id2ch:
-        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of `{list(ch_n2id.keys())}`.")
+        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of `{nicelist(ch_n2id.keys())}`.")
         return
     if get_role('verified') not in ctx.message.author.roles:
         await ctx.send(f"You haven't yet verified your MIT email. First acquire the `verified` role, then try again.")
@@ -149,10 +152,10 @@ async def selfrole(ctx, role_str=None):
     allowed_selfroles = ["'27", "'26", "'25", "'24", "'23", "cruft"]
     rq_role = get_role(role_str)
     if rq_role is None:
-        await ctx.send(f"{role_str} is not a valid role. Allowed selfroles are {", ".join(allowed_selfroles)}.")
+        await ctx.send(f"{role_str} is not a valid role. Allowed selfroles are {nicelist(allowed_selfroles)}.")
         return
     elif role_str not in allowed_selfroles:
-        await ctx.send(f"{role_str} is not an allowed selfrole. Allowed selfroles are {", ".join(allowed_selfroles)}.")
+        await ctx.send(f"{role_str} is not an allowed selfrole. Allowed selfroles are {nicelist(allowed_selfroles)}.")
         return 
     
     if rq_role in ctx.message.author.roles:
@@ -170,7 +173,7 @@ async def addaffiliated(ctx):
 @bot.command(help="Grants ec-affiliated and your hall role.")
 async def addaffiliate(ctx):
     if ctx.message.channel.id not in ch_id2ch:
-        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of `{list(ch_n2id.keys())}`.")
+        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of `{nicelist(ch_n2id.keys())}`.")
         return
     if get_role('ec-resident') not in ctx.message.author.roles:
         await ctx.send(f"Only EC residents can add new EC affiliates.")
@@ -200,7 +203,7 @@ async def addaffiliate(ctx):
 @bot.command(help="Grants ec-resident and your hall role.")
 async def addresident(ctx):
     if ctx.message.channel.id not in ch_id2ch:
-        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of `{list(ch_n2id.keys())}`.")
+        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of `{nicelist(ch_n2id.keys())}`.")
         return
     if not (set([get_role('hall-chair'), get_role('moderator'), get_role('hall-moderator')]) & set(ctx.message.author.roles)):
         await ctx.send(f"Only hall chairs, hall moderators, and server moderators can add new EC residents.")
@@ -231,7 +234,7 @@ async def addresident(ctx):
 @bot.command(help="Grants hall-moderator")
 async def addhallmod(ctx):
     if ctx.message.channel.id not in ch_id2ch:
-        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of `{list(ch_n2id.keys())}`.")
+        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of `{nicelist(ch_n2id.keys())}`.")
         return
     if not (set([get_role('hall-chair'), get_role('moderator')]) & set(ctx.message.author.roles)):
         await ctx.send(f"Only hall chairs and server moderators can add new hall moderators.")
