@@ -100,7 +100,7 @@ async def on_message(message):
         if 'my son' in message.content.lower():
             await message.channel.send('yes father')
         if message.content.lower() == 'version' or message.content.lower() == 'pbv':
-            await message.channel.send('0.1.2')
+            await message.channel.send('0.1.3')
         if message.content.lower() == 'kill yourself' or message.content.lower() == 'kys':
             await message.channel.send('okay :(')
             try:
@@ -190,7 +190,7 @@ async def addaffiliate(ctx):
     user = mentions[0]
     await user.add_roles(get_role('ec-affiliated'))
     await user.add_roles(caller_hall_role)
-    await ctx.send(f"Granted ec-affiliated and {caller_hall_role.name[-3:-1]} roles to {user.name}. \nIf you'd like to undo this or add different/multiple hall roles, contact a moderator.")
+    await ctx.send(f"Granted ec-affiliated and {caller_hall_role.name[-3:-1]} roles to {user.mention}. \nIf you'd like to undo this or add different/multiple hall roles, contact a moderator.")
 
 
 @bot.command(help="Grants ec-resident and your hall role.")
@@ -217,7 +217,7 @@ async def addresident(ctx):
     await user.add_roles(get_role('ec-affiliated'))
     await user.add_roles(get_role('ec-resident'))
     await user.add_roles(caller_hall_role)
-    await ctx.send(f"Granted ec-affiliated, ec-resident, and {caller_hall_role.name[-3:-1]} roles to {user.name}. \nIf you'd like to undo this or add different/multiple hall roles, contact a moderator.")    
+    await ctx.send(f"Granted ec-affiliated, ec-resident, and {caller_hall_role.name[-3:-1]} roles to {user.mention}. \nIf you'd like to undo this or add different/multiple hall roles, contact a moderator.")    
 
 
 @bot.command(help="Grants hall-moderator")
@@ -245,7 +245,7 @@ async def addhallmod(ctx):
         await ctx.send(f"Please use !addresident first.")
         return
     await user.add_roles(get_role('hall-moderator'))
-    await ctx.send(f"Granted hall-moderator role to {user.name}. \nIf you'd like to undo this, contact a moderator.")    
+    await ctx.send(f"Granted hall-moderator role to {user.mention}. \nIf you'd like to undo this, contact a moderator.")    
 
 @bot.command(hidden=True)
 async def bp(ctx):
@@ -266,7 +266,9 @@ async def on_command_error(ctx, error):
 @bot.command(hidden=True)
 async def tmp_hallmod(ctx):
     await manualverify(ctx)
+    await asyncio.sleep(1)
     await addresident(ctx)
+    await asyncio.sleep(1)
     await addhallmod(ctx)
 
 bot.run(TOKEN)
