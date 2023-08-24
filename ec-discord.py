@@ -36,7 +36,7 @@ ch_id2ch = {id: None for id in ch_n2id.values()}
 
 allowed_selfroles = ["'27", "'26", "'25", "'24", "'23", "cruft",
                     'baker', 'burton-conner', 'macgregor', 'maseeh', 'mccormick',
-                    'new-house', 'next', 'new-vassar', 'random', 'simmons', 'fsilg']
+                    'new-house', 'next', 'new-vassar', 'random', 'simmons', 'fsilg', 'grad-housing']
 
 flags = {}
 maintainer = 452902745066831903 # erez
