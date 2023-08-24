@@ -141,8 +141,8 @@ async def selfrole(ctx, role_str=None):
     if get_role('verified') not in ctx.message.author.roles:
         await ctx.send(f"You haven't yet verified your MIT email. First acquire the `verified` role, then try again.")
         return
-    if role_str is None:
-        await ctx.send(f"Please name a role to add.")
+    if not role_str:
+        await ctx.send(f"Please name a role to add. Allowed selfroles are {nicelist(allowed_selfroles)}.")
         return
     
     if len(ctx.message.role_mentions) > 0:
