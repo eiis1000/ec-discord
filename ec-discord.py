@@ -34,6 +34,10 @@ ch_n2id = {
 }
 ch_id2ch = {id: None for id in ch_n2id.values()}
 
+allowed_selfroles = ["'27", "'26", "'25", "'24", "'23", "cruft",
+                    'baker', 'burton-conner', 'macgregor', 'maseeh', 'mccormick',
+                    'new-house', 'next', 'new-vassar', 'random', 'simmons', 'fsilg']
+
 flags = {}
 maintainer = 452902745066831903 # erez
 start_time = time.ctime() 
@@ -135,6 +139,7 @@ async def manualverify(ctx):
 
 @bot.command(help="Gives you the specified role.")
 async def selfrole(ctx, role_str=None):
+    global allowed_selfroles
     if ctx.message.channel.id not in ch_id2ch:
         await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of {nicelist(ch_n2id.keys())}.")
         return
@@ -149,9 +154,6 @@ async def selfrole(ctx, role_str=None):
         await ctx.send("Please do not mention your desired role - just enter its name :)")
         return
     
-    allowed_selfroles = ["'27", "'26", "'25", "'24", "'23", "cruft",
-                        'baker', 'burton-conner', 'macgregor', 'maseeh', 'mccormick',
-                        'new-house', 'next', 'new-vassar', 'random', 'simmons', 'fsilg']
     role_str = role_str.replace("‘", "'")
     if "'" + role_str in allowed_selfroles:
         role_str = "'" + role_str
