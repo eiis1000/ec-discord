@@ -149,7 +149,9 @@ async def selfrole(ctx, role_str=None):
         await ctx.send("Please do not mention your desired role - just enter its name :)")
         return
     
-    allowed_selfroles = ["'27", "'26", "'25", "'24", "'23", "cruft"]
+    allowed_selfroles = ["'27", "'26", "'25", "'24", "'23", "cruft",
+                        'baker', 'burton-conner', 'macgregor', 'maseeh', 'mccormick',
+                        'new-house', 'next', 'new-vassar', 'random', 'simmons', 'fsilg']
     role_str = role_str.replace("‘", "'")
     if "'" + role_str in allowed_selfroles:
         role_str = "'" + role_str
