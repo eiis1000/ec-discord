@@ -159,6 +159,8 @@ async def selfrole(ctx, role_str=None):
         role_str = "'" + role_str
     if len(role_str) > 2 and "'" + role_str[2:] in allowed_selfroles:
         role_str = "'" + role_str[2:] # for when people do 2027 instead of '27
+    if role_str.lower() in allowed_selfroles:
+        role_str = role_str.lower()
     rq_role = get_role(role_str)
     if rq_role is None:
         await ctx.send(f"{role_str.replace('@','')} is not a valid role. Allowed selfroles are {nicelist(allowed_selfroles)}.")
