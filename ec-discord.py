@@ -36,7 +36,7 @@ ch_id2ch = {id: None for id in ch_n2id.values()}
 
 allowed_selfroles = ["'27", "'26", "'25", "'24", "'23", "cruft",
                     'baker', 'burton-conner', 'macgregor', 'maseeh', 'mccormick',
-                    'new-house', 'next', 'new-vassar', 'random', 'simmons', 'fsilg', 'grad-housing']
+                    'new-house', 'next', 'new-vassar', 'random', 'simmons', 'fsilg', 'grad-housing', 'off-campus']
 
 flags = {}
 maintainer = 452902745066831903 # erez
@@ -107,7 +107,7 @@ async def on_message(message):
         if 'my son' in message.content.lower():
             await message.channel.send('yes father')
         if message.content.lower() in ['!version', 'version', 'pbv']:
-            await message.channel.send('0.1.4')
+            await message.channel.send('0.1.5')
         if message.content.lower() in ['!reboot', 'reboot', 'kys']:
             await message.channel.send('okay :(')
             try:
