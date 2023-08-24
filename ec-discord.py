@@ -106,9 +106,9 @@ async def on_message(message):
     if message.author.id == maintainer:
         if 'my son' in message.content.lower():
             await message.channel.send('yes father')
-        if message.content.lower() == 'version' or message.content.lower() == 'pbv':
+        if message.content.lower() in ['!version', 'version', 'pbv']:
             await message.channel.send('0.1.4')
-        if message.content.lower() == 'reboot' or message.content.lower() == 'kys':
+        if message.content.lower() in ['!reboot', 'reboot', 'kys']:
             await message.channel.send('okay :(')
             try:
                 await bot.close()
