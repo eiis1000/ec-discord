@@ -241,6 +241,34 @@ async def addresident(ctx):
     await user.add_roles(caller_hall_role)
     await ctx.send(f"Granted ec-affiliated, ec-resident, and {caller_hall_role.name[-3:-1]} roles to {user.mention}. \nIf you'd like to undo this or add different/multiple hall roles, contact a moderator.")    
 
+@bot.command(help="Grants your hall role.")
+async def addhallrole(ctx):
+    if ctx.message.channel.id not in ch_id2ch:
+        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of {nicelist(ch_n2id.keys())}.")
+        return
+    if not (set([get_role('ec-resident')]) & set(ctx.message.author.roles)):
+        await ctx.send(f"Only residents can grant their hall role by itself.")
+        return
+
+    caller_hall_role_set = set(ctx.message.author.roles) & hall_roles()
+    if len(caller_hall_role_set) != 1:
+        await ctx.send(f"You have {len(caller_hall_role_set)} hall roles, which is very confusing to joeg. Please contact a {get_role('moderator').mention} for manual resolution.")
+        return
+    caller_hall_role = caller_hall_role_set.pop()
+    
+    mentions = ctx.message.mentions
+    if len(mentions) != 1:
+        await ctx.send(f"You must mention exactly one user to assign the roles to.")
+        return
+    
+    user = mentions[0]
+    if not (set([get_role('ec-affiliated'), get_role('house-team')]) & set(user.roles)):
+        await ctx.send(f"{user.mention} is not ec-affiliated or a member of house team.")
+        return
+
+    await user.add_roles(caller_hall_role)
+    await ctx.send(f"Granted {caller_hall_role.name[-3:-1]} role to {user.mention}. \nIf you'd like to undo this, contact a moderator.")    
+
 
 @bot.command(help="Grants hall-moderator")
 async def addhallmod(ctx):
@@ -272,6 +300,27 @@ async def addhallmod(ctx):
     await user.add_roles(get_role('hall-moderator'))
     await ctx.send(f"Granted hall-moderator role to {user.mention}. \nIf you'd like to undo this, contact a moderator.")    
 
+@bot.command(help="Grants house-team")
+async def addhouseteam(ctx):
+    if ctx.message.channel.id not in ch_id2ch:
+        await ctx.send(f"This is not a valid bot commands channel. Please issue commands in one of {nicelist(ch_n2id.keys())}.")
+        return
+    if not (set([get_role('hall-chair'), get_role('moderator')]) & set(ctx.message.author.roles)):
+        await ctx.send(f"Only hall chairs and server moderators can add house team members.")
+        return
+    
+    mentions = ctx.message.mentions
+    if len(mentions) != 1:
+        await ctx.send(f"You must mention exactly one user to assign the roles to.")
+        return
+
+    user = mentions[0]
+    if get_role('verified') not in user.roles:
+        await ctx.send(f"{user.mention} hasn't yet verified their MIT email. Ask them to first acquire the `verified` role via `!verify`, then try again.")
+        return
+    await user.add_roles(get_role('house-team'))
+    await ctx.send(f"Granted house-team role to {user.mention}. \nIf you want to give them your hall role, use !addhallrole. \nIf you'd like to undo this, contact a moderator.")    
+
 @bot.command(hidden=True)
 async def bp(ctx):
     if ctx.message.author.id != maintainer:
@@ -287,13 +336,5 @@ async def on_command_error(ctx, error):
     await ctx.send(f"You've encountered an error: {errstr}")#\nPlease contact the administrator <@{maintainer}> with this information.")
     raise error
 
-
-@bot.command(hidden=True)
-async def tmp_hallmod(ctx):
-    await manualverify(ctx)
-    await asyncio.sleep(1)
-    await addresident(ctx)
-    await asyncio.sleep(1)
-    await addhallmod(ctx)
 
 bot.run(TOKEN)
