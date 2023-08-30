@@ -208,7 +208,7 @@ async def addaffiliate(ctx):
 
     await user.add_roles(get_role('ec-affiliated'))
     await user.add_roles(caller_hall_role)
-    await ctx.send(f"Granted ec-affiliated and {caller_hall_role.name[-3:-1]} roles to {user.mention}. \nIf you'd like to undo this or add different/multiple hall roles, contact a moderator.")
+    await ctx.send(f"Granted ec-affiliated and {caller_hall_role.name} roles to {user.mention}. \nIf you'd like to undo this or add different/multiple hall roles, contact a moderator.")
 
 
 @bot.command(help="Grants ec-resident and your hall role.")
@@ -239,7 +239,7 @@ async def addresident(ctx):
     await user.add_roles(get_role('ec-affiliated'))
     await user.add_roles(get_role('ec-resident'))
     await user.add_roles(caller_hall_role)
-    await ctx.send(f"Granted ec-affiliated, ec-resident, and {caller_hall_role.name[-3:-1]} roles to {user.mention}. \nIf you'd like to undo this or add different/multiple hall roles, contact a moderator.")    
+    await ctx.send(f"Granted ec-affiliated, ec-resident, and {caller_hall_role.name} roles to {user.mention}. \nIf you'd like to undo this or add different/multiple hall roles, contact a moderator.")    
 
 @bot.command(help="Grants your hall role.")
 async def addhallrole(ctx):
@@ -267,7 +267,7 @@ async def addhallrole(ctx):
         return
 
     await user.add_roles(caller_hall_role)
-    await ctx.send(f"Granted {caller_hall_role.name[-3:-1]} role to {user.mention}. \nIf you'd like to undo this, contact a moderator.")    
+    await ctx.send(f"Granted {caller_hall_role.name} role to {user.mention}. \nIf you'd like to undo this, contact a moderator.")    
 
 
 @bot.command(help="Grants hall-moderator")
