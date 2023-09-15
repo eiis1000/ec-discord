@@ -39,7 +39,8 @@ allowed_selfroles = ["'27", "'26", "'25", "'24", "'23", "cruft",
                     'new-house', 'next', 'new-vassar', 'random', 'simmons', 'fsilg', 'grad-housing', 'off-campus']
 
 flags = {}
-maintainer = 452902745066831903 # erez
+author = 452902745066831903 # erez
+maintainers = [author]
 start_time = time.ctime() 
 
 intents = discord.Intents._from_value(3276541)
@@ -103,11 +104,14 @@ async def on_message(message):
     prev_msg = message
     if message.author.bot:
         return
-    if message.author.id == maintainer:
+    if message.author.id == author:
         if 'my son' in message.content.lower():
+            await message.channel.send("yes")
+    if message.author.id in maintainers:
+        if 'help' in message.content.lower():
             await message.channel.send("I'm on it.")
         if message.content.lower() in ['!version', 'version', 'pbv']:
-            await message.channel.send('0.1.5')
+            await message.channel.send('0.1.6')
         if message.content.lower() in ['!reboot', 'reboot', 'kys']:
             await message.channel.send('okay :(')
             try:
@@ -323,7 +327,7 @@ async def addhouseteam(ctx):
 
 @bot.command(hidden=True)
 async def bp(ctx):
-    if ctx.message.author.id != maintainer:
+    if ctx.message.author.id != author:
         return
     await ctx.send("breakpoint executed")
     breakpoint()
