@@ -105,7 +105,7 @@ async def on_message(message):
         return
     if message.author.id == maintainer:
         if 'my son' in message.content.lower():
-            await message.channel.send('I'm on it.')
+            await message.channel.send("I'm on it.")
         if message.content.lower() in ['!version', 'version', 'pbv']:
             await message.channel.send('0.1.5')
         if message.content.lower() in ['!reboot', 'reboot', 'kys']:
