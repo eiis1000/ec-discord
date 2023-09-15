@@ -106,7 +106,7 @@ async def on_message(message):
         return
     if message.author.id == author:
         if 'my son' in message.content.lower():
-            await message.channel.send("yes")
+            await message.channel.send("I'm here.")
     if message.author.id in maintainers:
         if 'help' in message.content.lower():
             await message.channel.send("I'm on it.")
