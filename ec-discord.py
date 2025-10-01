@@ -34,7 +34,7 @@ ch_n2id = {
 }
 ch_id2ch = {id: None for id in ch_n2id.values()}
 
-allowed_selfroles = ["'28", "'27", "'26", "'25", "'24", "'23", "cruft",
+allowed_selfroles = ["'29", "'28", "'27", "'26", "'25", "'24", "'23", "cruft",
                     'baker', 'burton-conner', 'macgregor', 'maseeh', 'mccormick',
                     'new-house', 'next', 'new-vassar', 'random', 'simmons', 'fsilg', 'grad-housing', 'off-campus']
 
